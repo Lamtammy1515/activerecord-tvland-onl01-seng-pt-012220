@@ -11,18 +11,18 @@ describe Character do
   it "belongs to an actor" do
     danny_pudi = Actor.create(first_name: "Danny", last_name: "Pudi")
     abed = Character.create(name:'Abed', actor_id: danny_pudi.id)
-    expect(Character.find_by(name: "Abed").actor).to eq(danny_pudi)
+    expect(Character.find_by(name: "Abed").actors).to eq(danny_pudi)
   end
 
   it "belongs to a show" do
     frasier = Show.new(name: "Frasier")
     niles = Character.new(name: "Niles Crane")
-    niles.show = frasier
+    niles.shows = frasier
     niles.save
     
     frasier.reload
     expect(frasier.characters).to include(niles)
-    expect(niles.show).to eq(frasier)
+    expect(niles.shows).to eq(frasier)
   end
 
   it "has a catchphrase" do
